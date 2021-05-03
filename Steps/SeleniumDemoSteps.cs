@@ -13,6 +13,11 @@ namespace TQA_SpecFlowProject1.Steps
         private readonly ScenarioContext _scenarioContext;
         private IWebDriver driver = null;
 
+        public SeleniumDemoSteps(ScenarioContext scenarioContext)
+        {
+            _scenarioContext = scenarioContext;
+        }
+
 
         [Given(@"the Firefox Webdriver is launched")]
         public void GivenTheFirefoxWebdriverIsLaunched()
