@@ -1,4 +1,6 @@
-﻿using System;
+﻿using FluentAssertions;
+using SpecFlowCalculator;
+using System;
 using TechTalk.SpecFlow;
 
 namespace TQA_SpecFlowProject1.Steps
@@ -10,6 +12,8 @@ namespace TQA_SpecFlowProject1.Steps
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext _scenarioContext;
+        private readonly Calculator _calculator = new Calculator();
+        private int _result;
 
         public CalculatorStepDefinitions(ScenarioContext scenarioContext)
         {
@@ -27,6 +31,8 @@ namespace TQA_SpecFlowProject1.Steps
 
             //_scenarioContext.Pending();
             Console.WriteLine("Inside the 'Given' method");
+
+            _calculator.FirstNumber = number;
         }
 
         [Given("the second number is (.*)")]
@@ -40,6 +46,8 @@ namespace TQA_SpecFlowProject1.Steps
 
             //_scenarioContext.Pending();
             Console.WriteLine("Inside the 'And' method");
+
+            _calculator.SecondNumber = number;
         }
 
         [When("the two numbers are added")]
@@ -49,6 +57,8 @@ namespace TQA_SpecFlowProject1.Steps
 
             //_scenarioContext.Pending();
             Console.WriteLine("Inside the 'When' method");
+
+            _result = _calculator.Add();
         }
 
         [Then("the result should be (.*)")]
@@ -58,6 +68,8 @@ namespace TQA_SpecFlowProject1.Steps
 
             //_scenarioContext.Pending();
             Console.WriteLine("Inside the 'Then' method");
+
+            _result.Should().Be(result);
         }
     }
 }
