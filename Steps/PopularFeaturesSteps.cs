@@ -6,14 +6,14 @@ using TechTalk.SpecFlow;
 namespace TQA_SpecFlowProject1.Steps
 {
     [Binding]
-    public class SeleniumDemoSteps
+    public class PopularFeaturesSteps
     {
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext _scenarioContext;
         private IWebDriver driver = null;
 
-        public SeleniumDemoSteps(ScenarioContext scenarioContext)
+        public PopularFeaturesSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
         }
@@ -52,6 +52,18 @@ namespace TQA_SpecFlowProject1.Steps
             }
         }
 
+        [When(@"the user clicks the current (.*)")]
+        public void WhenTheUserClicksTheCurrent(string link)
+        {
+            clickLink(link);
+        }
+
+        [Then(@"the user is taken to the specific (.*)")]
+        public void ThenTheUserIsTakenToTheSpecific(string article)
+        {
+            verifyLandingPage(article);
+        }
+
         [AfterScenario()]
         public void AfterScenario()
         {
@@ -61,6 +73,24 @@ namespace TQA_SpecFlowProject1.Steps
                 driver.Quit();
 
             }        
+        }
+
+
+        private void clickLink(string link)
+        {
+            driver.FindElement(By.LinkText(link)).Click();
+        }
+
+        private void verifyLandingPage(string page)
+        {
+            if (driver.FindElement(By.XPath("//*[@id='main']/h1")).Text.Contains(page))
+            {
+                Console.WriteLine("Success!");
+            }
+            else
+            {
+                Console.WriteLine("Did not land on the correct page!");
+            }
         }
     }
 }
