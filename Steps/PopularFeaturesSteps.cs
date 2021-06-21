@@ -92,5 +92,10 @@ namespace TQA_SpecFlowProject1.Steps
                 Console.WriteLine("Did not land on the correct page!");
             }
         }
+
+        private void livingDocHtmlReportGeneration()
+        {
+
+        }
     }
 }
