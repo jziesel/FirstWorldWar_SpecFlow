@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TQA_SpecFlowProject1", "TQA_SpecFlowProject1.csproj", "{13730F2B-1A8C-4B26-9BBD-707C85AC0FA8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SpecFlowCalculator", "..\SpecFlowCalculator\SpecFlowCalculator.csproj", "{3E7E3647-F418-4351-A2FB-0C42DB6EEFFD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SpecFlowCalculator", "..\SpecFlowCalculator\SpecFlowCalculator.csproj", "{3E7E3647-F418-4351-A2FB-0C42DB6EEFFD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
