@@ -10,7 +10,7 @@
 // ------------------------------------------------------------------------------
 #region Designer generated code
 #pragma warning disable
-namespace TQA_SpecFlowProject1.Features
+namespace FirstWorldWar_SpecFlow.Features
 {
     using TechTalk.SpecFlow;
     using System;
