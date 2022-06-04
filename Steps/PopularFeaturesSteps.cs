@@ -24,8 +24,8 @@ namespace TQA_SpecFlowProject1.Steps
         public void GivenTheFirefoxWebdriverIsLaunched()
         {
             //ScenarioContext.Current.Pending();
-            //driver = new ChromeDriver();
-            driver = new FirefoxDriver();
+            driver = new ChromeDriver();
+            //driver = new FirefoxDriver();
         }
         
         [Given(@"the First World War Home page is loaded")]
