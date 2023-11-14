@@ -1,5 +1,7 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using static OpenQA.Selenium.Edge.EdgeOptions;
 using OpenQA.Selenium.Firefox;
 using System;
 using TechTalk.SpecFlow;
@@ -24,8 +26,11 @@ namespace TQA_SpecFlowProject1.Steps
         public void GivenTheFirefoxWebdriverIsLaunched()
         {
             //ScenarioContext.Current.Pending();
-            driver = new ChromeDriver();
-            //driver = new FirefoxDriver();
+            //driver = new ChromeDriver();
+            //driver = new FirefoxDriver();  // _testRunContext.TestDirectory   "C:\\Users\\JZiesel\\geckodriver260\\geckodriver.exe"
+            EdgeOptions eo = new EdgeOptions();
+            eo.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
+            driver = new EdgeDriver(eo);
         }
         
         [Given(@"the First World War Home page is loaded")]
