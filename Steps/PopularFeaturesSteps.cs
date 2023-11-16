@@ -5,6 +5,11 @@ using static OpenQA.Selenium.Edge.EdgeOptions;
 using OpenQA.Selenium.Firefox;
 using System;
 using TechTalk.SpecFlow;
+using FirstWorldWar_SpecFlow.DataProviders;
+using FluentAssertions;  //https://methodpoet.com/fluent-assertions/
+using System.Collections.Generic;
+using FirstWorldWar_SpecFlow.Managers;
+using FirstWorldWar_SpecFlow.PageObjects;
 
 namespace TQA_SpecFlowProject1.Steps
 {
@@ -14,48 +19,18 @@ namespace TQA_SpecFlowProject1.Steps
         // For additional details on SpecFlow step definitions see https://go.specflow.org/doc-stepdef
 
         private readonly ScenarioContext _scenarioContext;
+        private WebDriverManager webDriverManager = new WebDriverManager();
         private IWebDriver driver = null;
+        private FWW_FeatureArticles featureArticle = null;
 
         public PopularFeaturesSteps(ScenarioContext scenarioContext)
         {
             _scenarioContext = scenarioContext;
+            driver = webDriverManager.getDriver();
+            featureArticle = new FWW_FeatureArticles(driver);
         }
 
 
-        [Given(@"the Webdriver is launched")]
-        public void GivenTheWebdriverIsLaunched()
-        {
-            //ScenarioContext.Current.Pending();
-
-            // this is temporary until config file can be incorporated...
-            var browser = "CHROMEBROWSER";   // "EDGEBROWSER";  
-
-            switch(browser)
-            {
-                case "CHROMEBROWSER":
-                    ChromeOptions co = new ChromeOptions();
-                    co.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
-                    driver = new ChromeDriver("C:\\Users\\JZiesel\\.nuget\\packages\\Selenium.WebDriver.ChromeDriver\\109.0.5414.7400\\driver\\win32\\chromedriver.exe", co);
-                    break;
-
-                case "EDGEBROWSER":
-                    EdgeOptions eo = new EdgeOptions();
-                    eo.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
-                    driver = new EdgeDriver(eo);
-                    break;
-
-                case "FIREFOXBROWSER":
-                    FirefoxOptions fo = new FirefoxOptions();
-                    fo.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
-                    driver = new FirefoxDriver("C:\\Users\\JZiesel\\.nuget\\packages\\selenium.webdriver.geckodriver\\0.33.0\\driver\\win64\\geckodriver.exe", fo);  // _testRunContext.TestDirectory   "C:\\Users\\JZiesel\\geckodriver260\\geckodriver.exe"
-                    break;
-
-                default:
-                    break;
-            }
-
-        }
-        
         [Given(@"the First World War Home page is loaded")]
         public void GivenTheFirstWorldWarHomePageIsLoaded()
         {
@@ -67,7 +42,7 @@ namespace TQA_SpecFlowProject1.Steps
         public void WhenTheUserSelectsTheTrenchWarfareLink()
         {
             //ScenarioContext.Current.Pending();
-            driver.FindElement(By.XPath("//*[@id='rightbar']/ul[1]/li[8]/a")).Click();
+            featureArticle.clickFeatureArticleLink();
         }
         
         [Then(@"the user is taken to the Feature Articles - Life in the Trenches page")]
@@ -97,12 +72,7 @@ namespace TQA_SpecFlowProject1.Steps
         [AfterScenario()]
         public void AfterScenario()
         {
-            Console.WriteLine("Closing the WebDriver");
-            if (driver != null)
-            {
-                driver.Quit();
-
-            }        
+            webDriverManager.closeWebDriver();
         }
 
 

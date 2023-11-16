@@ -3,15 +3,13 @@
 
 @mytag
 Scenario: Popular Features - Trench Warfare
-	Given the Webdriver is launched
-	And the First World War Home page is loaded
+	Given the First World War Home page is loaded
 	When the user selects the Trench Warfare link
 	Then the user is taken to the Feature Articles - Life in the Trenches page
 
 @mytag
 Scenario Outline: Popular Features - Collection
-	Given the Webdriver is launched
-	And the First World War Home page is loaded
+	Given the First World War Home page is loaded
 	When the user clicks the current <link>
 	Then the user is taken to the specific <featuredArticle>
 	Examples: 
