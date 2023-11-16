@@ -93,7 +93,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 6
- testRunner.Given("the Firefox Webdriver is launched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Webdriver is launched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 7
  testRunner.And("the First World War Home page is loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");
@@ -143,7 +143,7 @@ this.ScenarioInitialize(scenarioInfo);
             {
                 this.ScenarioStart();
 #line 13
- testRunner.Given("the Firefox Webdriver is launched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
+ testRunner.Given("the Webdriver is launched", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "Given ");
 #line hidden
 #line 14
  testRunner.And("the First World War Home page is loaded", ((string)(null)), ((TechTalk.SpecFlow.Table)(null)), "And ");

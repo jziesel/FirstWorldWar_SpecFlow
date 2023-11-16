@@ -22,15 +22,38 @@ namespace TQA_SpecFlowProject1.Steps
         }
 
 
-        [Given(@"the Firefox Webdriver is launched")]
-        public void GivenTheFirefoxWebdriverIsLaunched()
+        [Given(@"the Webdriver is launched")]
+        public void GivenTheWebdriverIsLaunched()
         {
             //ScenarioContext.Current.Pending();
-            //driver = new ChromeDriver();
-            //driver = new FirefoxDriver();  // _testRunContext.TestDirectory   "C:\\Users\\JZiesel\\geckodriver260\\geckodriver.exe"
-            EdgeOptions eo = new EdgeOptions();
-            eo.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
-            driver = new EdgeDriver(eo);
+
+            // this is temporary until config file can be incorporated...
+            var browser = "CHROMEBROWSER";   // "EDGEBROWSER";  
+
+            switch(browser)
+            {
+                case "CHROMEBROWSER":
+                    ChromeOptions co = new ChromeOptions();
+                    co.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
+                    driver = new ChromeDriver("C:\\Users\\JZiesel\\.nuget\\packages\\Selenium.WebDriver.ChromeDriver\\109.0.5414.7400\\driver\\win32\\chromedriver.exe", co);
+                    break;
+
+                case "EDGEBROWSER":
+                    EdgeOptions eo = new EdgeOptions();
+                    eo.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
+                    driver = new EdgeDriver(eo);
+                    break;
+
+                case "FIREFOXBROWSER":
+                    FirefoxOptions fo = new FirefoxOptions();
+                    fo.AcceptInsecureCertificates = true;  // needed because the AUT site has an expired cert.
+                    driver = new FirefoxDriver("C:\\Users\\JZiesel\\.nuget\\packages\\selenium.webdriver.geckodriver\\0.33.0\\driver\\win64\\geckodriver.exe", fo);  // _testRunContext.TestDirectory   "C:\\Users\\JZiesel\\geckodriver260\\geckodriver.exe"
+                    break;
+
+                default:
+                    break;
+            }
+
         }
         
         [Given(@"the First World War Home page is loaded")]
