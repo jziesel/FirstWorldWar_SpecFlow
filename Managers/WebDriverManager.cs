@@ -14,10 +14,16 @@ namespace FirstWorldWar_SpecFlow.Managers
 {
     class WebDriverManager
     {
+        private readonly ScenarioContext _scenarioContext; 
         private IWebDriver driver = null;
 
-        public WebDriverManager()
+        public WebDriverManager(ScenarioContext scenarioContext)  // ScenarioContext scenarioContext
         {
+            _scenarioContext = scenarioContext;
+            if (!_scenarioContext.ContainsKey("wdmDriver"))
+            {
+                getDriver();
+            }
         }
 
         public IWebDriver getDriver()
@@ -31,7 +37,7 @@ namespace FirstWorldWar_SpecFlow.Managers
             driver.Manage().Window.FullScreen();
         }
 
-        public void closeWebDriver()
+        public void closeWebDriver(IWebDriver driver)
         {
             Console.WriteLine("Closing the WebDriver");
             if (driver != null)
@@ -71,6 +77,7 @@ namespace FirstWorldWar_SpecFlow.Managers
                     break;
             }
             driver.Manage().Window.Maximize();
+            _scenarioContext.Add("wdmDriver", driver);
 
             return driver;
         }

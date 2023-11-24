@@ -15,9 +15,8 @@ namespace FirstWorldWar_SpecFlow.PageObjects
             this.driver = driver;
         }
 
-        /*
-         *      Locators
-         */
+        /*  Locators  */
+
         By trenchWarfare = By.XPath("//*[@id='rightbar']/ul[1]/li[8]/a");
 
 
